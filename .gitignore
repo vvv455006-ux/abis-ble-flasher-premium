@@ -1,0 +1,7 @@
+node_modules/
+.env
+database/*.db
+database/abis.json
+firmware/uploads/*
+!firmware/uploads/.gitkeep
+*.log

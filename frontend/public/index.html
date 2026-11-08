@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ABIS BLE FLASHER</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div id="app">
+    <!-- Login Screen -->
+    <div id="login-screen" class="screen active">
+      <div class="login-container">
+        <div class="logo">
+          <div class="logo-icon">ABIS</div>
+          <h1>BLE FLASHER</h1>
+          <p class="subtitle">EXCLUSIVE ACCESS SYSTEM</p>
+        </div>
+        <div class="login-card">
+          <h2>SECURE ACCESS REQUIRED</h2>
+          <input type="password" id="access-key" placeholder="ENTER YOUR ACCESS KEY" autocomplete="off">
+          <button id="activate-btn" class="btn-primary">ACTIVATE ACCESS</button>
+          <div id="login-error" class="error-message"></div>
+          <div id="login-loader" class="loader hidden"></div>
+        </div>
+        <div class="access-info">
+          ACCESS KEYS AVAILABLE ONLY AT <strong>@F3Prompt</strong><br>
+          <span style="color:#444;font-size:0.7rem;">Official access keys are exclusively available through @F3Prompt.</span>
+        </div>
+        <div class="tech-bg"></div>
+      </div>
+    </div>
+
+    <!-- Main Dashboard -->
+    <div id="dashboard-screen" class="screen">
+      <header class="header">
+        <div class="logo-small">ABIS BLE FLASHER</div>
+        <div class="header-right">
+          <div class="credits-badge" id="credits-display">Credits: --</div>
+          <div class="user-info" id="user-info">Key Active</div>
+          <button id="logout-btn" class="btn-secondary">LOGOUT</button>
+          <button id="admin-btn" class="btn-secondary hidden">ADMIN</button>
+        </div>
+      </header>
+
+      <main class="dashboard">
+        <div class="status-grid">
+          <div class="card">
+            <h3>DEVICE STATUS</h3>
+            <div id="device-status" class="status-disconnected">Not Connected</div>
+            <div id="device-model">Model: --</div>
+            <div id="device-fw">FW: --</div>
+            <div id="device-id">ID: --</div>
+          </div>
+          <div class="card">
+            <h3>BLUETOOTH</h3>
+            <div id="bt-status">Ready</div>
+            <button id="scan-btn" class="btn-primary">CONNECT DEVICE</button>
+            <button id="disconnect-btn" class="btn-secondary hidden">DISCONNECT</button>
+            <div id="bt-support-warning" class="warning hidden">Web Bluetooth not supported in this browser. Use Chrome/Edge on desktop or Android.</div>
+          </div>
+          <div class="card">
+            <h3>CREDITS</h3>
+            <div id="credits-large" class="credits-large">--</div>
+            <p style="color:#555;font-size:0.8rem;">Available for verified updates</p>
+          </div>
+        </div>
+
+        <div class="main-sections">
+          <section class="card flash-center">
+            <h2>TEMPLATES</h2>
+            <div id="firmware-list" class="firmware-list"></div>
+            <div id="flash-progress" class="progress-area hidden">
+              <div class="progress-bar"><div id="progress-fill"></div></div>
+              <div id="progress-text">0%</div>
+              <div id="flash-status">Waiting...</div>
+            </div>
+            <button id="start-flash-btn" class="btn-primary" disabled>START FLASH</button>
+            <div id="flash-message" class="message"></div>
+          </section>
+
+          <section class="card">
+            <h2>RECENT ACTIVITY</h2>
+            <div id="activity-list" class="activity-list"></div>
+          </section>
+        </div>
+      </main>
+    </div>
+
+    <!-- Admin Panel -->
+    <div id="admin-screen" class="screen">
+      <header class="header">
+        <div class="logo-small">ABIS ADMIN</div>
+        <button id="back-to-dash" class="btn-secondary">BACK TO DASHBOARD</button>
+      </header>
+      <main class="admin-dashboard">
+        <div class="stats-grid" id="admin-stats"></div>
+        <div class="admin-sections">
+          <section class="card">
+            <h2>KEY GENERATOR</h2>
+            <div class="form-group">
+              <label>Number of Keys</label>
+              <input type="number" id="gen-count" value="1" min="1" max="100">
+            </div>
+            <div class="form-group">
+              <label>Credits per Key</label>
+              <select id="gen-credits">
+                <option value="1">1</option>
+                <option value="3">3</option>
+                <option value="5">5</option>
+                <option value="10">10</option>
+                <option value="25">25</option>
+                <option value="50">50</option>
+                <option value="100">100</option>
+                <option value="custom">Custom</option>
+              </select>
+              <input type="number" id="gen-credits-custom" class="hidden" placeholder="Custom credits">
+            </div>
+            <div class="form-group">
+              <label>Expiration</label>
+              <input type="date" id="gen-expiration">
+              <label><input type="checkbox" id="gen-unlimited"> Unlimited</label>
+            </div>
+            <button id="generate-btn" class="btn-primary">GENERATE KEYS</button>
+            <div id="generated-keys" class="generated-keys"></div>
+          </section>
+
+          <section class="card">
+            <h2>KEY MANAGEMENT</h2>
+            <div id="keys-table"></div>
+          </section>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <script src="/js/app.js"></script>
+</body>
+</html>
